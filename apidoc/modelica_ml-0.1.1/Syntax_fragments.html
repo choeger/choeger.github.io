@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Syntax.html">
+<link rel="next" href="Mapper.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Modelica_parser" rel="Chapter" href="Modelica_parser.html">
+<link title="Modelica_lexer" rel="Chapter" href="Modelica_lexer.html">
+<link title="Pprint_modelica" rel="Chapter" href="Pprint_modelica.html">
+<link title="Syntax" rel="Chapter" href="Syntax.html">
+<link title="Syntax_fragments" rel="Chapter" href="Syntax_fragments.html">
+<link title="Mapper" rel="Chapter" href="Mapper.html"><title>Syntax_fragments</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Syntax.html" title="Syntax">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Mapper.html" title="Mapper">Next</a>
+</div>
+<h1>Module <a href="type_Syntax_fragments.html">Syntax_fragments</a></h1>
+
+<pre><span class="keyword">module</span> Syntax_fragments: <code class="code">sig</code> <a href="Syntax_fragments.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Useful fragments of Modelica syntax<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALempty_app"><span class="keyword">val</span> empty_app</span> : <code class="type"><a href="Syntax.html#TYPEexp">Syntax.exp</a> -> <a href="Syntax.html#TYPEapplication">Syntax.application</a></code></pre><div class="info ">
+Return an empty application with the given expression as function<br>
+</div>
+
+<pre><span id="VALnamed"><span class="keyword">val</span> named</span> : <code class="type">string -> <a href="Syntax.html#TYPEexp">Syntax.exp</a> -> <a href="Syntax.html#TYPEnamed_arg">Syntax.named_arg</a></code></pre><div class="info ">
+Convenience constructor for <a href="Syntax.html#TYPEnamed_arg"><code class="code">Syntax.named_arg</code></a> with no location information attached<br>
+</div>
+
+<pre><span id="VALno_comment"><span class="keyword">val</span> no_comment</span> : <code class="type"><a href="Syntax.html#TYPEcomment">Syntax.comment</a></code></pre><div class="info ">
+The empty comment<br>
+</div>
+
+<pre><span id="VALunannotated"><span class="keyword">val</span> unannotated</span> : <code class="type">'a -> 'a <a href="Syntax.html#TYPEannotated">Syntax.annotated</a></code></pre><div class="info ">
+Combine any element with an empty annotation<br>
+</div>
+
+<pre><span id="VALuncommented"><span class="keyword">val</span> uncommented</span> : <code class="type">'a -> 'a <a href="Syntax.html#TYPEcommented">Syntax.commented</a></code></pre><div class="info ">
+Combine any element with the empty comment<br>
+</div>
+
+<pre><span id="VALno_modification"><span class="keyword">val</span> no_modification</span> : <code class="type"><a href="Syntax.html#TYPEmodification">Syntax.modification</a></code></pre><div class="info ">
+The empty modification<br>
+</div>
+
+<pre><span id="VALno_def_options"><span class="keyword">val</span> no_def_options</span> : <code class="type"><a href="Syntax.html#TYPEdefinition_options">Syntax.definition_options</a></code></pre><div class="info ">
+The options parsed from no definition flags<br>
+</div>
+
+<pre><span id="VALempty_def"><span class="keyword">val</span> empty_def</span> : <code class="type"><a href="Syntax.html#TYPEdefinition_structure">Syntax.definition_structure</a></code></pre><div class="info ">
+A skeleton for definitions<br>
+</div>
+
+<pre><span id="VALno_type_options"><span class="keyword">val</span> no_type_options</span> : <code class="type"><a href="Syntax.html#TYPEtypedef_options">Syntax.typedef_options</a></code></pre><div class="info ">
+The options parsed from no type-definition flags<br>
+</div>
+
+<pre><span id="VALempty_typedef"><span class="keyword">val</span> empty_typedef</span> : <code class="type">unit <a href="Syntax.html#TYPEtypedef_struct">Syntax.typedef_struct</a></code></pre><div class="info ">
+A skeleton for type-definitions<br>
+</div>
+
+<pre><span id="VALempty_behavior"><span class="keyword">val</span> empty_behavior</span> : <code class="type"><a href="Syntax.html#TYPEbehavior">Syntax.behavior</a></code></pre><div class="info ">
+The empty cargo section of a class<br>
+</div>
+
+<pre><span id="VALempty_elements"><span class="keyword">val</span> empty_elements</span> : <code class="type"><a href="Syntax.html#TYPEelements">Syntax.elements</a></code></pre><div class="info ">
+The empty element list<br>
+</div>
+
+<pre><span id="VALempty_composition"><span class="keyword">val</span> empty_composition</span> : <code class="type"><a href="Syntax.html#TYPEcomposition">Syntax.composition</a></code></pre><div class="info ">
+The empty composition<br>
+</div>
+
+<pre><span id="EXCEPTIONEmptyName"><span class="keyword">exception</span> EmptyName</span></pre>
+<div class="info ">
+Thrown when attempted to create a name or type-name from an empty list<br>
+</div>
+
+<pre><span id="VALname"><span class="keyword">val</span> name</span> : <code class="type">string list -> <a href="Syntax.html#TYPEexp">Syntax.exp</a></code></pre><div class="info ">
+Create a name from the list of its elements<br>
+<b>Raises</b> <code>EmptyName</code> in case of the empty list<br>
+</div>
+
+<pre><span id="VALtype_name"><span class="keyword">val</span> type_name</span> : <code class="type">string list -> <a href="Syntax.html#TYPEtexp">Syntax.texp</a></code></pre><div class="info ">
+Create a type-name from the list of its elements<br>
+<b>Raises</b> <code>EmptyName</code> in case of the empty list<br>
+</div>
+</body></html>

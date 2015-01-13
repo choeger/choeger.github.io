@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Modelica_lexer.html">
+<link rel="next" href="Syntax.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Modelica_parser" rel="Chapter" href="Modelica_parser.html">
+<link title="Modelica_lexer" rel="Chapter" href="Modelica_lexer.html">
+<link title="Pprint_modelica" rel="Chapter" href="Pprint_modelica.html">
+<link title="Syntax" rel="Chapter" href="Syntax.html">
+<link title="Syntax_fragments" rel="Chapter" href="Syntax_fragments.html">
+<link title="Mapper" rel="Chapter" href="Mapper.html"><title>Pprint_modelica</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Modelica_lexer.html" title="Modelica_lexer">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Syntax.html" title="Syntax">Next</a>
+</div>
+<h1>Module <a href="type_Pprint_modelica.html">Pprint_modelica</a></h1>
+
+<pre><span class="keyword">module</span> Pprint_modelica: <code class="code">sig</code> <a href="Pprint_modelica.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Modelica pretty-printers. Implementation is based on <code class="code">Format</code> pretty-printing, but the 
+    <code class="code">Format</code>-based API is not (yet) exposed to keep the documentation workload small. Patches welcome.
+<p>
+
+    All pretty printers return correct (i.e. parseable) Modelica Syntax.<br>
+</div>
+<hr width="100%">
+
+<pre><span id="VALeq2str"><span class="keyword">val</span> eq2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEequation">Syntax.equation</a> -> string</code></pre><div class="info ">
+Equation pretty printer.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALimport2str"><span class="keyword">val</span> import2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEimport">Syntax.import</a> -> string</code></pre><div class="info ">
+<code class="code">import</code>-clause pretty printer.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALextend2str"><span class="keyword">val</span> extend2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEextend">Syntax.extend</a> -> string</code></pre><div class="info ">
+<code class="code">extends</code>-clause pretty printer.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALtexpr2str"><span class="keyword">val</span> texpr2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEtexp">Syntax.texp</a> -> string</code></pre><div class="info ">
+Equation pretty printer.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALtd2str"><span class="keyword">val</span> td2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEtypedef">Syntax.typedef</a> -> string</code></pre><div class="info ">
+Type-Definition pretty printer<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALdefs2str"><span class="keyword">val</span> defs2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEdefinition">Syntax.definition</a> list -> string</code></pre><div class="info ">
+Definition pretty printer. 
+    Since modelica.ml factors definitions (i.e. <code class="code">parameter Real x,y;</code> becomes <code class="code">parameter Real x; parameter Real y</code>),
+    it works on a list instead of singletons.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALstmt2str"><span class="keyword">val</span> stmt2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEstatement">Syntax.statement</a> -> string</code></pre><div class="info ">
+Statement pretty printer.<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALtexpr2str"><span class="keyword">val</span> texpr2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEtexp">Syntax.texp</a> -> string</code></pre><div class="info ">
+Type-expresssion pretty printer<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALunit2str"><span class="keyword">val</span> unit2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEunit_">Syntax.unit_</a> -> string</code></pre><div class="info ">
+Compilation unit (aka 'Stored_Definition') pretty printer<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+
+<pre><span id="VALexpr2str"><span class="keyword">val</span> expr2str</span> : <code class="type">?max:int -> <a href="Syntax.html#TYPEexp">Syntax.exp</a> -> string</code></pre><div class="info ">
+Expresssion pretty printer<br>
+</div>
+<div class="param_info"><code class="code">max</code> : The maximum number of boxes opened (as defined by <code class="code">Format.set_max_boxes</code>)</div>
+</body></html>

@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Syntax_fragments.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Modelica_parser" rel="Chapter" href="Modelica_parser.html">
+<link title="Modelica_lexer" rel="Chapter" href="Modelica_lexer.html">
+<link title="Pprint_modelica" rel="Chapter" href="Pprint_modelica.html">
+<link title="Syntax" rel="Chapter" href="Syntax.html">
+<link title="Syntax_fragments" rel="Chapter" href="Syntax_fragments.html">
+<link title="Mapper" rel="Chapter" href="Mapper.html"><title>Mapper</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Syntax_fragments.html" title="Syntax_fragments">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Mapper.html">Mapper</a></h1>
+
+<pre><span class="keyword">module</span> Mapper: <code class="code">sig</code> <a href="Mapper.html">..</a> <code class="code">end</code></pre><div class="info module top">
+<h2 id="2_AgenericSyntaxmapperinspiredbyOCamlsAstmapper">A generic Syntax mapper inspired by OCaml's Ast_mapper </h2><br>
+</div>
+<hr width="100%">
+
+<pre><code><span id="TYPEmapper"><span class="keyword">type</span> <code class="type"></code>mapper</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.unit_">unit_</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEunit_">Syntax.unit_</a> -> <a href="Syntax.html#TYPEunit_">Syntax.unit_</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.within">within</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEname">Syntax.name</a> option -> <a href="Syntax.html#TYPEname">Syntax.name</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.comment">comment</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEcomment">Syntax.comment</a> -> <a href="Syntax.html#TYPEcomment">Syntax.comment</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.annotation">annotation</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEmodification">Syntax.modification</a> -> <a href="Syntax.html#TYPEmodification">Syntax.modification</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.typedef_options">typedef_options</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEtypedef_options">Syntax.typedef_options</a> -> <a href="Syntax.html#TYPEtypedef_options">Syntax.typedef_options</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.typedef">typedef</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEtypedef">Syntax.typedef</a> -> <a href="Syntax.html#TYPEtypedef">Syntax.typedef</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.composition">composition</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEcomposition">Syntax.composition</a> -> <a href="Syntax.html#TYPEcomposition">Syntax.composition</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.redeclared_typedef">redeclared_typedef</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEtypedef">Syntax.typedef</a> -> <a href="Syntax.html#TYPEtypedef">Syntax.typedef</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.extension">extension</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEextension">Syntax.extension</a> -> <a href="Syntax.html#TYPEextension">Syntax.extension</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.def">def</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEdefinition">Syntax.definition</a> -> <a href="Syntax.html#TYPEdefinition">Syntax.definition</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.redeclared_def">redeclared_def</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEdefinition">Syntax.definition</a> -> <a href="Syntax.html#TYPEdefinition">Syntax.definition</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.import">import</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEimport">Syntax.import</a> -> <a href="Syntax.html#TYPEimport">Syntax.import</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.import_desc">import_desc</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEimport_desc">Syntax.import_desc</a> -> <a href="Syntax.html#TYPEimport_desc">Syntax.import_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.extend">extend</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEextend">Syntax.extend</a> -> <a href="Syntax.html#TYPEextend">Syntax.extend</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.imports">imports</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEimport">Syntax.import</a> list -> <a href="Syntax.html#TYPEimport">Syntax.import</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.public">public</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEelements">Syntax.elements</a> -> <a href="Syntax.html#TYPEelements">Syntax.elements</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.protected">protected</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEelements">Syntax.elements</a> -> <a href="Syntax.html#TYPEelements">Syntax.elements</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.cargo">cargo</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEbehavior">Syntax.behavior</a> -> <a href="Syntax.html#TYPEbehavior">Syntax.behavior</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.constraint_">constraint_</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEconstraint_">Syntax.constraint_</a> -> <a href="Syntax.html#TYPEconstraint_">Syntax.constraint_</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.der_spec">der_spec</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEder_spec">Syntax.der_spec</a> -> <a href="Syntax.html#TYPEder_spec">Syntax.der_spec</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.enum_literal">enum_literal</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEenum_literal">Syntax.enum_literal</a> -> <a href="Syntax.html#TYPEenum_literal">Syntax.enum_literal</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.algorithm">algorithm</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEalgorithm">Syntax.algorithm</a> -> <a href="Syntax.html#TYPEalgorithm">Syntax.algorithm</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.external_def">external_def</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEexternal_def">Syntax.external_def</a> -> <a href="Syntax.html#TYPEexternal_def">Syntax.external_def</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.texp">texp</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEtexp">Syntax.texp</a> -> <a href="Syntax.html#TYPEtexp">Syntax.texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.exp">exp</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEexp">Syntax.exp</a> -> <a href="Syntax.html#TYPEexp">Syntax.exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.idx">idx</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEidx">Syntax.idx</a> -> <a href="Syntax.html#TYPEidx">Syntax.idx</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.statement_desc">statement_desc</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEstatement_desc">Syntax.statement_desc</a> -> <a href="Syntax.html#TYPEstatement_desc">Syntax.statement_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.statement">statement</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEstatement">Syntax.statement</a> -> <a href="Syntax.html#TYPEstatement">Syntax.statement</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.equation_desc">equation_desc</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEequation_desc">Syntax.equation_desc</a> -> <a href="Syntax.html#TYPEequation_desc">Syntax.equation_desc</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.equation">equation</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEequation">Syntax.equation</a> -> <a href="Syntax.html#TYPEequation">Syntax.equation</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.modification">modification</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEmodification">Syntax.modification</a> -> <a href="Syntax.html#TYPEmodification">Syntax.modification</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.type_redeclaration">type_redeclaration</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEtype_redeclaration">Syntax.type_redeclaration</a> -> <a href="Syntax.html#TYPEtype_redeclaration">Syntax.type_redeclaration</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.component_redeclaration">component_redeclaration</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -><br>       <a href="Syntax.html#TYPEcomponent_redeclaration">Syntax.component_redeclaration</a> -> <a href="Syntax.html#TYPEcomponent_redeclaration">Syntax.component_redeclaration</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.component_modification">component_modification</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -><br>       <a href="Syntax.html#TYPEcomponent_modification">Syntax.component_modification</a> -> <a href="Syntax.html#TYPEcomponent_modification">Syntax.component_modification</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.component_modification_struct">component_modification_struct</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -><br>       <a href="Syntax.html#TYPEcomponent_modification_struct">Syntax.component_modification_struct</a> -> <a href="Syntax.html#TYPEcomponent_modification_struct">Syntax.component_modification_struct</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.modification_value">modification_value</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEmodification_value">Syntax.modification_value</a> -> <a href="Syntax.html#TYPEmodification_value">Syntax.modification_value</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.name">name</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEname">Syntax.name</a> -> <a href="Syntax.html#TYPEname">Syntax.name</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.named_arg">named_arg</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> <a href="Syntax.html#TYPEnamed_arg">Syntax.named_arg</a> -> <a href="Syntax.html#TYPEnamed_arg">Syntax.named_arg</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.identifier">identifier</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> string -> string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.comment_str">comment_str</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> string -> string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmapper.location">location</span>&nbsp;: <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a> -> Location.t -> Location.t</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+A mapper record implements one "method" per syntactic category,
+    using an open recursion style: each method takes as its first
+    argument the mapper to be applied to children in the syntax
+    tree.<br>
+</div>
+
+
+<pre><span id="VAL(&&&)"><span class="keyword">val</span> (&amp;&amp;&amp;)</span> : <code class="type">('a -> 'b -> 'c -> 'd) -> ('e -> 'a) -> 'e -> 'b -> 'c -> 'd</code></pre><div class="info ">
+combine two generic mappers<br>
+</div>
+
+<pre><span id="VALmap_list"><span class="keyword">val</span> map_list</span> : <code class="type">('a -> 'b -> 'c) -> 'a -> 'b list -> 'c list</code></pre><div class="info ">
+Lift a sub-map function to a map function over lists<br>
+</div>
+
+<pre><span id="VALmap_option"><span class="keyword">val</span> map_option</span> : <code class="type">('a -> 'b -> 'c) -> 'a -> 'b option -> 'c option</code></pre>
+<pre><span id="VALmap_commented"><span class="keyword">val</span> map_commented</span> : <code class="type">(<a href="Mapper.html#TYPEmapper">mapper</a> -> 'a -> 'b) -><br>       <a href="Mapper.html#TYPEmapper">mapper</a> -> 'a <a href="Syntax.html#TYPEcommented">Syntax.commented</a> -> 'b <a href="Syntax.html#TYPEcommented">Syntax.commented</a></code></pre>
+<pre><span id="VALmap_located"><span class="keyword">val</span> map_located</span> : <code class="type">(<a href="Mapper.html#TYPEmapper">mapper</a> -> 'a -> 'b) -><br>       <a href="Mapper.html#TYPEmapper">mapper</a> -> 'a Location.loc -> 'b Location.loc</code></pre>
+<pre><span id="VALmap_else_conditional"><span class="keyword">val</span> map_else_conditional</span> : <code class="type">(<a href="Mapper.html#TYPEmapper">mapper</a> -> 'a -> 'b) -><br>       <a href="Mapper.html#TYPEmapper">mapper</a> -> 'a <a href="Syntax.html#TYPEelse_condition">Syntax.else_condition</a> -> 'b <a href="Syntax.html#TYPEelse_condition">Syntax.else_condition</a></code></pre>
+<pre><span id="VALmap_conditional"><span class="keyword">val</span> map_conditional</span> : <code class="type">(<a href="Mapper.html#TYPEmapper">mapper</a> -> 'a -> 'b) -><br>       <a href="Mapper.html#TYPEmapper">mapper</a> -> 'a <a href="Syntax.html#TYPEcondition_struct">Syntax.condition_struct</a> -> 'b <a href="Syntax.html#TYPEcondition_struct">Syntax.condition_struct</a></code></pre>
+<pre><span id="VALmap_for_loop"><span class="keyword">val</span> map_for_loop</span> : <code class="type">(<a href="Mapper.html#TYPEmapper">mapper</a> -> 'a -> 'b) -><br>       <a href="Mapper.html#TYPEmapper">mapper</a> -> 'a <a href="Syntax.html#TYPEfor_loop_struct">Syntax.for_loop_struct</a> -> 'b <a href="Syntax.html#TYPEfor_loop_struct">Syntax.for_loop_struct</a></code></pre>
+<pre><span id="VALid"><span class="keyword">val</span> id</span> : <code class="type">'a -> 'b -> 'b</code></pre><div class="info ">
+The identity map function. Does <b>no</b> traversal<br>
+</div>
+
+<pre><span class="keyword">module</span> <a href="Mapper.TD.html">TD</a>: <code class="code">sig</code> <a href="Mapper.TD.html">..</a> <code class="code">end</code></pre><div class="info">
+Map for type-definitions
+</div>
+
+<pre><span class="keyword">module</span> <a href="Mapper.Unit.html">Unit</a>: <code class="code">sig</code> <a href="Mapper.Unit.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.DerSpec.html">DerSpec</a>: <code class="code">sig</code> <a href="Mapper.DerSpec.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Name.html">Name</a>: <code class="code">sig</code> <a href="Mapper.Name.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Import_Desc.html">Import_Desc</a>: <code class="code">sig</code> <a href="Mapper.Import_Desc.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Import.html">Import</a>: <code class="code">sig</code> <a href="Mapper.Import.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Comment.html">Comment</a>: <code class="code">sig</code> <a href="Mapper.Comment.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.TRD.html">TRD</a>: <code class="code">sig</code> <a href="Mapper.TRD.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.CRD.html">CRD</a>: <code class="code">sig</code> <a href="Mapper.CRD.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.CMOD.html">CMOD</a>: <code class="code">sig</code> <a href="Mapper.CMOD.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.CMOD_Struct.html">CMOD_Struct</a>: <code class="code">sig</code> <a href="Mapper.CMOD_Struct.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.CMOD_Value.html">CMOD_Value</a>: <code class="code">sig</code> <a href="Mapper.CMOD_Value.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Modification.html">Modification</a>: <code class="code">sig</code> <a href="Mapper.Modification.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Equation_Desc.html">Equation_Desc</a>: <code class="code">sig</code> <a href="Mapper.Equation_Desc.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Equation.html">Equation</a>: <code class="code">sig</code> <a href="Mapper.Equation.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Idx.html">Idx</a>: <code class="code">sig</code> <a href="Mapper.Idx.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Algorithm.html">Algorithm</a>: <code class="code">sig</code> <a href="Mapper.Algorithm.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Statement.html">Statement</a>: <code class="code">sig</code> <a href="Mapper.Statement.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Statement_Desc.html">Statement_Desc</a>: <code class="code">sig</code> <a href="Mapper.Statement_Desc.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Named_Arg.html">Named_Arg</a>: <code class="code">sig</code> <a href="Mapper.Named_Arg.html">..</a> <code class="code">end</code></pre>
+<pre><span class="keyword">module</span> <a href="Mapper.Exp.html">Exp</a>: <code class="code">sig</code> <a href="Mapper.Exp.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALdefault_mapper"><span class="keyword">val</span> default_mapper</span> : <code class="type"><a href="Mapper.html#TYPEmapper">mapper</a></code></pre></body></html>

@@ -1,0 +1,1784 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Pprint_modelica.html">
+<link rel="next" href="Syntax_fragments.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Modelica_parser" rel="Chapter" href="Modelica_parser.html">
+<link title="Modelica_lexer" rel="Chapter" href="Modelica_lexer.html">
+<link title="Pprint_modelica" rel="Chapter" href="Pprint_modelica.html">
+<link title="Syntax" rel="Chapter" href="Syntax.html">
+<link title="Syntax_fragments" rel="Chapter" href="Syntax_fragments.html">
+<link title="Mapper" rel="Chapter" href="Mapper.html"><title>Syntax</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Pprint_modelica.html" title="Pprint_modelica">Previous</a>
+&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;<a class="post" href="Syntax_fragments.html" title="Syntax_fragments">Next</a>
+</div>
+<h1>Module <a href="type_Syntax.html">Syntax</a></h1>
+
+<pre><span class="keyword">module</span> Syntax: <code class="code">sig</code> <a href="Syntax.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Modelica 3.x abstract syntax 
+<p>
+
+    This module contains an interpretation of a "usable" form of the abstract syntax 
+    of the modeling language <a href=" http://modelica.org">  Modelica</a>
+    Since Modelica only specifies the <i>concrete</i> syntax in the specification, there
+    is a certain degree of freedom applied here.<br>
+<b>Author(s):</b> Christoph Höger<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEstr"><span class="keyword">type</span> <code class="type"></code>str</span> = <code class="type">string Location.loc</code> </pre>
+
+
+<pre><span id="TYPEname"><span class="keyword">type</span> <code class="type"></code>name</span> = <code class="type"><a href="Syntax.html#TYPEstr">str</a> list</code> </pre>
+<div class="info ">
+A type-name is a list of strings separated by dots, e.g. Modelica.Icons.Example<br>
+</div>
+
+
+<pre><code><span id="TYPEcommented"><span class="keyword">type</span> <code class="type">'a</code> commented</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcommented.commented">commented</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcommented.comment">comment</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEcomment">comment</a></code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+Something that can be commented can wrapped in this record<br>
+</div>
+
+
+<pre><code><span id="TYPEannotated"><span class="keyword">type</span> <code class="type">'a</code> annotated</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTannotated.annotated_elem">annotated_elem</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTannotated.annotation">annotation</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEmodification">modification</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+Something that can be annotated can wrapped in this record<br>
+</div>
+
+
+<pre><span id="TYPEcomment"><span class="keyword">type</span> <code class="type"></code>comment</span> = <code class="type"><a href="Syntax.html#TYPEstr">str</a> option <a href="Syntax.html#TYPEannotated">annotated</a></code> </pre>
+<div class="info ">
+Comments are optionally annotated optional strings<br>
+</div>
+
+
+<pre><code><span id="TYPEunit_"><span class="keyword">type</span> <code class="type"></code>unit_</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTunit_.within">within</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEname">name</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTunit_.toplevel_defs">toplevel_defs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtypedef">typedef</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+The stored definition unit is the representation of a single Modelica file<br>
+</div>
+
+
+<pre><code><span id="TYPEtypedef_options"><span class="keyword">type</span> <code class="type"></code>typedef_options</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_options.type_replaceable">type_replaceable</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_options.type_final">type_final</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_options.partial">partial</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_options.encapsulated">encapsulated</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+The options of a type-definition:
+    is the definition replaceable / final / partial / encapsulated ?<br>
+</div>
+
+
+<pre><code><span id="TYPEtypedef_struct"><span class="keyword">type</span> <code class="type">'a</code> typedef_struct</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_struct.td_name">td_name</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_struct.sort">sort</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEsort">sort</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_struct.type_exp">type_exp</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_struct.cns">cns</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEconstraint_">constraint_</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_struct.type_options">type_options</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtypedef_options">typedef_options</a></code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+Typedefs share a lot of common code. 
+    This is reflected by the <a href="Syntax.html#TYPEtypedef_struct"><code class="code">Syntax.typedef_struct</code></a>: <pre class="verbatim">'a</pre> denotes the definition's distincitve payload.<br>
+</div>
+
+
+<pre><code><span id="TYPEtypedef_desc"><span class="keyword">type</span> <code class="type"></code>typedef_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.Short"><span class="constructor">Short</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEtexp">texp</a> <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.Composition"><span class="constructor">Composition</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEcomposition">composition</a> <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.Enumeration"><span class="constructor">Enumeration</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEenum_literal">enum_literal</a> list <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.OpenEnumeration"><span class="constructor">OpenEnumeration</span></span> <span class="keyword">of</span> <code class="type">unit <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.DerSpec"><span class="constructor">DerSpec</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEder_spec">der_spec</a> <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtypedef_desc.Extension"><span class="constructor">Extension</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEextension">extension</a> <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a></code></code></td>
+
+</tr></table>
+
+<div class="info ">
+The definition of a new type/class etc.<br>
+</div>
+
+
+<pre><span id="TYPEextension"><span class="keyword">type</span> <code class="type"></code>extension</span> = <code class="type"><a href="Syntax.html#TYPEcomposition">composition</a> * <a href="Syntax.html#TYPEmodification">modification</a> option</code> </pre>
+
+
+<pre><span id="TYPEtypedef"><span class="keyword">type</span> <code class="type"></code>typedef</span> = <code class="type"><a href="Syntax.html#TYPEtypedef_desc">typedef_desc</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><span id="TYPEconstraint_"><span class="keyword">type</span> <code class="type"></code>constraint_</span> = <code class="type"><a href="Syntax.html#TYPEtexp">texp</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><span id="TYPEalgorithm"><span class="keyword">type</span> <code class="type"></code>algorithm</span> = <code class="type"><a href="Syntax.html#TYPEstatement">statement</a> list</code> </pre>
+
+
+<pre><code><span id="TYPEbehavior"><span class="keyword">type</span> <code class="type"></code>behavior</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbehavior.algorithms">algorithms</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEalgorithm">algorithm</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbehavior.equations">equations</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEequation">equation</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbehavior.initial_algorithms">initial_algorithms</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEalgorithm">algorithm</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbehavior.initial_equations">initial_equations</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEequation">equation</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbehavior.external_">external_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexternal_def">external_def</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEexternal_def_struct"><span class="keyword">type</span> <code class="type"></code>external_def_struct</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexternal_def_struct.lang">lang</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexternal_def_struct.ext_lhs">ext_lhs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexternal_def_struct.ext_ident">ext_ident</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexternal_def_struct.ext_args">ext_args</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEexternal_def"><span class="keyword">type</span> <code class="type"></code>external_def</span> = <code class="type"><a href="Syntax.html#TYPEexternal_def_struct">external_def_struct</a> <a href="Syntax.html#TYPEannotated">annotated</a></code> </pre>
+
+
+<pre><code><span id="TYPEelements"><span class="keyword">type</span> <code class="type"></code>elements</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelements.typedefs">typedefs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtypedef">typedef</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelements.redeclared_types">redeclared_types</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtypedef">typedef</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelements.extensions">extensions</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEextend">extend</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelements.defs">defs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEdefinition">definition</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelements.redeclared_defs">redeclared_defs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEdefinition">definition</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcomposition"><span class="keyword">type</span> <code class="type"></code>composition</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomposition.imports">imports</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEimport">import</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomposition.public">public</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEelements">elements</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomposition.protected">protected</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEelements">elements</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomposition.cargo">cargo</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEbehavior">behavior</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEenum_literal"><span class="keyword">type</span> <code class="type"></code>enum_literal</span> = <code class="type">string <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><code><span id="TYPEder_spec"><span class="keyword">type</span> <code class="type"></code>der_spec</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTder_spec.der_name">der_name</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEname">name</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTder_spec.idents">idents</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEstr">str</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+<div class="info ">
+Partial derivative specification, see section 12.7.2<br>
+</div>
+
+
+<pre><code><span id="TYPEsort"><span class="keyword">type</span> <code class="type"></code>sort</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Package"><span class="constructor">Package</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Class"><span class="constructor">Class</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Model"><span class="constructor">Model</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Block"><span class="constructor">Block</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Connector"><span class="constructor">Connector</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.ExpandableConnector"><span class="constructor">ExpandableConnector</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Record"><span class="constructor">Record</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Function"><span class="constructor">Function</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Type"><span class="constructor">Type</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.Operator"><span class="constructor">Operator</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.OperatorRecord"><span class="constructor">OperatorRecord</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsort.OperatorFunction"><span class="constructor">OperatorFunction</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEconnectivity"><span class="keyword">type</span> <code class="type"></code>connectivity</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconnectivity.Flow"><span class="constructor">Flow</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTconnectivity.Stream"><span class="constructor">Stream</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEvariability"><span class="keyword">type</span> <code class="type"></code>variability</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariability.Constant"><span class="constructor">Constant</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariability.Parameter"><span class="constructor">Parameter</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTvariability.Discrete"><span class="constructor">Discrete</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEcausality"><span class="keyword">type</span> <code class="type"></code>causality</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcausality.Input"><span class="constructor">Input</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcausality.Output"><span class="constructor">Output</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEnamed_import"><span class="keyword">type</span> <code class="type"></code>named_import</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnamed_import.global">global</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEname">name</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnamed_import.local">local</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEimport"><span class="keyword">type</span> <code class="type"></code>import</span> = <code class="type"><a href="Syntax.html#TYPEimport_desc">import_desc</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><code><span id="TYPEimport_desc"><span class="keyword">type</span> <code class="type"></code>import_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTimport_desc.NamedImport"><span class="constructor">NamedImport</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEnamed_import">named_import</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTimport_desc.Unnamed"><span class="constructor">Unnamed</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEname">name</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTimport_desc.UnqualifiedImport"><span class="constructor">UnqualifiedImport</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEname">name</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEextend"><span class="keyword">type</span> <code class="type"></code>extend</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextend.ext_type">ext_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTextend.ext_annotation">ext_annotation</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEmodification">modification</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEscope"><span class="keyword">type</span> <code class="type"></code>scope</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTscope.Inner"><span class="constructor">Inner</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTscope.Outer"><span class="constructor">Outer</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTscope.InnerOuter"><span class="constructor">InnerOuter</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTscope.Local"><span class="constructor">Local</span></span></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEdefinition_options"><span class="keyword">type</span> <code class="type"></code>definition_options</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_options.final">final</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_options.scope">scope</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEscope">scope</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_options.replaceable">replaceable</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEdefinition_structure"><span class="keyword">type</span> <code class="type"></code>definition_structure</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_name">def_name</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_type">def_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_constraint">def_constraint</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEconstraint_">constraint_</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_rhs">def_rhs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_if">def_if</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTdefinition_structure.def_options">def_options</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEdefinition_options">definition_options</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEdefinition"><span class="keyword">type</span> <code class="type"></code>definition</span> = <code class="type"><a href="Syntax.html#TYPEdefinition_structure">definition_structure</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><span id="TYPEstatement"><span class="keyword">type</span> <code class="type"></code>statement</span> = <code class="type"><a href="Syntax.html#TYPEstatement_desc">statement_desc</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><span id="TYPEstatements"><span class="keyword">type</span> <code class="type"></code>statements</span> = <code class="type"><a href="Syntax.html#TYPEstatement">statement</a> list</code> </pre>
+
+
+<pre><code><span id="TYPEstatement_desc"><span class="keyword">type</span> <code class="type"></code>statement_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.Assignment"><span class="constructor">Assignment</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEassignment">assignment</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.Call"><span class="constructor">Call</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEcall_statement">call_statement</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.IfStmt"><span class="constructor">IfStmt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEif_statement">if_statement</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.WhenStmt"><span class="constructor">WhenStmt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEwhen_statement">when_statement</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.Break"><span class="constructor">Break</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.Return"><span class="constructor">Return</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.ForStmt"><span class="constructor">ForStmt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEfor_statement">for_statement</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTstatement_desc.WhileStmt"><span class="constructor">WhileStmt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEwhile_statement">while_statement</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEassignment"><span class="keyword">type</span> <code class="type"></code>assignment</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTassignment.target">target</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTassignment.source">source</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEnamed_arg"><span class="keyword">type</span> <code class="type"></code>named_arg</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnamed_arg.argument_name">argument_name</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEstr">str</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnamed_arg.argument">argument</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcall_statement"><span class="keyword">type</span> <code class="type"></code>call_statement</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcall_statement.procedure">procedure</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcall_statement.pargs">pargs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcall_statement.pnamed_args">pnamed_args</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEnamed_arg">named_arg</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEelse_condition"><span class="keyword">type</span> <code class="type">'a</code> else_condition</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelse_condition.guard">guard</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTelse_condition.elsethen">elsethen</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcondition_struct"><span class="keyword">type</span> <code class="type">'a</code> condition_struct</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcondition_struct.condition">condition</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcondition_struct.then_">then_</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcondition_struct.else_if">else_if</span>&nbsp;: <code class="type">'a <a href="Syntax.html#TYPEelse_condition">else_condition</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcondition_struct.else_">else_</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEif_statement"><span class="keyword">type</span> <code class="type"></code>if_statement</span> = <code class="type"><a href="Syntax.html#TYPEstatements">statements</a> <a href="Syntax.html#TYPEcondition_struct">condition_struct</a></code> </pre>
+
+
+<pre><span id="TYPEwhen_statement"><span class="keyword">type</span> <code class="type"></code>when_statement</span> = <code class="type"><a href="Syntax.html#TYPEstatements">statements</a> <a href="Syntax.html#TYPEcondition_struct">condition_struct</a></code> </pre>
+
+
+<pre><code><span id="TYPEfor_loop_struct"><span class="keyword">type</span> <code class="type">'a</code> for_loop_struct</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTfor_loop_struct.idx">idx</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEidx">idx</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTfor_loop_struct.body">body</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEfor_statement"><span class="keyword">type</span> <code class="type"></code>for_statement</span> = <code class="type"><a href="Syntax.html#TYPEstatements">statements</a> <a href="Syntax.html#TYPEfor_loop_struct">for_loop_struct</a></code> </pre>
+
+
+<pre><code><span id="TYPEwhile_statement"><span class="keyword">type</span> <code class="type"></code>while_statement</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwhile_statement.while_">while_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTwhile_statement.do_">do_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEstatements">statements</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEequations"><span class="keyword">type</span> <code class="type"></code>equations</span> = <code class="type"><a href="Syntax.html#TYPEequation">equation</a> list</code> </pre>
+
+
+<pre><span id="TYPEequation"><span class="keyword">type</span> <code class="type"></code>equation</span> = <code class="type"><a href="Syntax.html#TYPEequation_desc">equation_desc</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><code><span id="TYPEequation_desc"><span class="keyword">type</span> <code class="type"></code>equation_desc</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTequation_desc.SimpleEquation"><span class="constructor">SimpleEquation</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTequation_desc.ForEquation"><span class="constructor">ForEquation</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEfor_equation">for_equation</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTequation_desc.IfEquation"><span class="constructor">IfEquation</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEif_equation">if_equation</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTequation_desc.WhenEquation"><span class="constructor">WhenEquation</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEwhen_equation">when_equation</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTequation_desc.ExpEquation"><span class="constructor">ExpEquation</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><span id="TYPEfor_equation"><span class="keyword">type</span> <code class="type"></code>for_equation</span> = <code class="type"><a href="Syntax.html#TYPEequations">equations</a> <a href="Syntax.html#TYPEfor_loop_struct">for_loop_struct</a></code> </pre>
+
+
+<pre><span id="TYPEif_equation"><span class="keyword">type</span> <code class="type"></code>if_equation</span> = <code class="type"><a href="Syntax.html#TYPEequations">equations</a> <a href="Syntax.html#TYPEcondition_struct">condition_struct</a></code> </pre>
+
+
+<pre><span id="TYPEwhen_equation"><span class="keyword">type</span> <code class="type"></code>when_equation</span> = <code class="type"><a href="Syntax.html#TYPEequations">equations</a> <a href="Syntax.html#TYPEcondition_struct">condition_struct</a></code> </pre>
+
+
+<pre><code><span id="TYPEbinary_exp"><span class="keyword">type</span> <code class="type"></code>binary_exp</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinary_exp.left">left</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTbinary_exp.right">right</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEif_expression"><span class="keyword">type</span> <code class="type"></code>if_expression</span> = <code class="type"><a href="Syntax.html#TYPEexp">exp</a> <a href="Syntax.html#TYPEcondition_struct">condition_struct</a></code> </pre>
+
+
+<pre><code><span id="TYPEarray_access"><span class="keyword">type</span> <code class="type"></code>array_access</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray_access.lhs">lhs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray_access.indices">indices</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPErange"><span class="keyword">type</span> <code class="type"></code>range</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrange.start">start</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrange.end_">end_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTrange.step">step</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEprojection"><span class="keyword">type</span> <code class="type"></code>projection</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTprojection.object_">object_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTprojection.field">field</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEapplication"><span class="keyword">type</span> <code class="type"></code>application</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTapplication.fun_">fun_</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTapplication.args">args</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTapplication.named_args">named_args</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEnamed_arg">named_arg</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcomprehension"><span class="keyword">type</span> <code class="type"></code>comprehension</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomprehension.exp">exp</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomprehension.idxs">idxs</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEidx">idx</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEexp"><span class="keyword">type</span> <code class="type"></code>exp</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Pow"><span class="constructor">Pow</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.DPow"><span class="constructor">DPow</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Mul"><span class="constructor">Mul</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.DMul"><span class="constructor">DMul</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Div"><span class="constructor">Div</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.DDiv"><span class="constructor">DDiv</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Plus"><span class="constructor">Plus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.DPlus"><span class="constructor">DPlus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Minus"><span class="constructor">Minus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.DMinus"><span class="constructor">DMinus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.UMinus"><span class="constructor">UMinus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.UPlus"><span class="constructor">UPlus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.UDMinus"><span class="constructor">UDMinus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.UDPlus"><span class="constructor">UDPlus</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.And"><span class="constructor">And</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Or"><span class="constructor">Or</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Not"><span class="constructor">Not</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Gt"><span class="constructor">Gt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Lt"><span class="constructor">Lt</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Leq"><span class="constructor">Leq</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Geq"><span class="constructor">Geq</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Neq"><span class="constructor">Neq</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Eq"><span class="constructor">Eq</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEbinary_exp">binary_exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.If"><span class="constructor">If</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEif_expression">if_expression</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.ArrayAccess"><span class="constructor">ArrayAccess</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEarray_access">array_access</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Range"><span class="constructor">Range</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPErange">range</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.RootIde"><span class="constructor">RootIde</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Ide"><span class="constructor">Ide</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Proj"><span class="constructor">Proj</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEprojection">projection</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.App"><span class="constructor">App</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEapplication">application</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Bool"><span class="constructor">Bool</span></span> <span class="keyword">of</span> <code class="type">bool</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Int"><span class="constructor">Int</span></span> <span class="keyword">of</span> <code class="type">int</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Real"><span class="constructor">Real</span></span> <span class="keyword">of</span> <code class="type">float</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.String"><span class="constructor">String</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Compr"><span class="constructor">Compr</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEcomprehension">comprehension</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Array"><span class="constructor">Array</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.MArray"><span class="constructor">MArray</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list list</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.ExplicitClosure"><span class="constructor">ExplicitClosure</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.End"><span class="constructor">End</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Colon"><span class="constructor">Colon</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Der"><span class="constructor">Der</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Initial"><span class="constructor">Initial</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.Assert"><span class="constructor">Assert</span></span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTexp.OutputExpression"><span class="constructor">OutputExpression</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option list</code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEidx"><span class="keyword">type</span> <code class="type"></code>idx</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTidx.variable">variable</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEstr">str</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTidx.range">range</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEtprojection"><span class="keyword">type</span> <code class="type"></code>tprojection</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtprojection.class_type">class_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtprojection.type_element">type_element</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEarray_type"><span class="keyword">type</span> <code class="type"></code>array_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray_type.base_type">base_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTarray_type.dims">dims</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmod_type"><span class="keyword">type</span> <code class="type"></code>mod_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmod_type.mod_type">mod_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmod_type.modification">modification</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEmodification">modification</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEtexp"><span class="keyword">type</span> <code class="type"></code>texp</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TIde"><span class="constructor">TIde</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TRootide"><span class="constructor">TRootide</span></span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TProj"><span class="constructor">TProj</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEtprojection">tprojection</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TArray"><span class="constructor">TArray</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEarray_type">array_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TMod"><span class="constructor">TMod</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEmod_type">mod_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TVar"><span class="constructor">TVar</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEvariability">variability</a> <a href="Syntax.html#TYPEflagged_type">flagged_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TCon"><span class="constructor">TCon</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEconnectivity">connectivity</a> <a href="Syntax.html#TYPEflagged_type">flagged_type</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtexp.TCau"><span class="constructor">TCau</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEcausality">causality</a> <a href="Syntax.html#TYPEflagged_type">flagged_type</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEflagged_type"><span class="keyword">type</span> <code class="type">'a</code> flagged_type</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTflagged_type.flag">flag</span>&nbsp;: <code class="type">'a</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTflagged_type.flagged">flagged</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEtype_redeclaration"><span class="keyword">type</span> <code class="type"></code>type_redeclaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_redeclaration.redecl_each">redecl_each</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTtype_redeclaration.redecl_type">redecl_type</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtexp">texp</a> <a href="Syntax.html#TYPEtypedef_struct">typedef_struct</a> <a href="Syntax.html#TYPEcommented">commented</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcomponent_redeclaration"><span class="keyword">type</span> <code class="type"></code>component_redeclaration</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_redeclaration.each">each</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_redeclaration.def">def</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEdefinition">definition</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEcomponent_modification_struct"><span class="keyword">type</span> <code class="type"></code>component_modification_struct</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_modification_struct.mod_each">mod_each</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_modification_struct.mod_final">mod_final</span>&nbsp;: <code class="type">bool</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_modification_struct.mod_name">mod_name</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEname">name</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTcomponent_modification_struct.mod_value">mod_value</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEmodification_value">modification_value</a> option</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEmodification_value"><span class="keyword">type</span> <code class="type"></code>modification_value</span> = </code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification_value.Nested"><span class="constructor">Nested</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEmodification">modification</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification_value.Rebind"><span class="constructor">Rebind</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification_value.NestedRebind"><span class="constructor">NestedRebind</span></span> <span class="keyword">of</span> <code class="type"><a href="Syntax.html#TYPEnested_and_rebind_modification">nested_and_rebind_modification</a></code></code></td>
+
+</tr></table>
+
+
+
+<pre><code><span id="TYPEnested_and_rebind_modification"><span class="keyword">type</span> <code class="type"></code>nested_and_rebind_modification</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnested_and_rebind_modification.nested">nested</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEmodification">modification</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnested_and_rebind_modification.new_value">new_value</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEexp">exp</a></code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="TYPEcomponent_modification"><span class="keyword">type</span> <code class="type"></code>component_modification</span> = <code class="type"><a href="Syntax.html#TYPEcomponent_modification_struct">component_modification_struct</a> <a href="Syntax.html#TYPEcommented">commented</a></code> </pre>
+
+
+<pre><code><span id="TYPEmodification"><span class="keyword">type</span> <code class="type"></code>modification</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification.types">types</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEtype_redeclaration">type_redeclaration</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification.components">components</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEcomponent_redeclaration">component_redeclaration</a> list</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmodification.modifications">modifications</span>&nbsp;: <code class="type"><a href="Syntax.html#TYPEcomponent_modification">component_modification</a> list</code>;</code></td>
+
+</tr></table>
+}
+
+
+</body></html>
