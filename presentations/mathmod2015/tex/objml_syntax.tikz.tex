@@ -1,0 +1,22 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,]
+\node(expr){
+\begin{grammar}
+<identifier> ::= <s> | <x> | <m> | <u> | <z>
+
+<a> ::= <x> | 'fun' ( <x> ) <a> | <a> <a> | 'let' <x> '=' <a> 'in' <a>
+    \alt 'self' | <u> '\{\langle'<u> '=' <a>';' '\ldots' <u> '=' <a> '\rangle\}' | <a> '\#' <m> | <s> '\#' <m>
+    \alt '\langle' <b> '\rangle' | 'new' <c> | 'class' <z> '=' <c> 'in' <a> 
+
+<c> ::= <z> | 'fun' ( <x> ) <c> | <c> <a> | 'struct' <b> 'end'
+b ::= \emptyset | <d> ';' <b>
+d ::= 'method' <m> '=' <a> | 'field' <u> '=' <a> | 'inherit' <c> 'as' <s>
+\end{grammar}
+};
+\end{tikzpicture}
+\end{document}

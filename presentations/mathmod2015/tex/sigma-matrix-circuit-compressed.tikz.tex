@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+\usepackage[europeanresistors,americaninductors]{circuitikz}
+\usetikzlibrary{dsp,positioning,chains,fit,shapes,calc}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,fill opacity=0.5,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\HighlightColumn}[2]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(top#1.north west) (bottom#1.south east)] (#1) {};}
+}
+
+\newcommand\sol[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,text opacity =1] {$#1$};} 
+
+
+\begin{document}
+\begin{circuitikz}[american voltages,american resistors]
+\draw
+  (-1,1)
+      to [short, -*] (0,1)
+  (0,0)
+      to [R, -*, l_=$u_1$] (2,0)
+  (0,0) -- (0, 2)
+      to[C, l=$u_C$] (5,2) -- (5,0) 
+  (2,0) -- (2,-1)
+      to[L, l=$u_L$] (4,-1) -- (4,0)
+  (2,0) -- (2, 1)
+      to[R, l=$u_2$] (4,1) -- (4,0)
+      to[short, *-]  (4,0) -- (5,0) 
+  (5,1)
+      to[short, *-]  (6,1)
+      ;
+      \node(matrix) at (-4,1) {
+$
+  \Sigma = \begin{array}{l|cc|c|r}      
+    & u & i & \\
+    \hline
+    & 6 & 6 & \text{surrogate} \\
+    \end{array}
+$
+};
+\end{circuitikz}
+\end{document}​

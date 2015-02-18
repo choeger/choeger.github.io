@@ -1,0 +1,28 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,x=10cm]
+
+\node(return){
+\inference[\sc Return]{}{(S, \returnt v) \elab (S, v)}
+};
+
+\node(get) [right = of return] {
+\inference[\sc Get]{}{(S, l \bullet \gett) \elab (S, S(l))}
+};
+
+\node(put) [below = of return] {
+\inference[\sc Put]{}{(S, l \bullet \putt v) \elab (S \cup (l \rightarrow v), [])}
+};
+
+\node(step) [below = of put] {
+\inference[\sc Step]{(S, m) \elab (S^\prime, v) & \subst{x}{v}{e} \reduce m & (S^\prime, m) \elab (S^{\prime\prime}, v^\prime)}{(S, x \leftarrow m \semt e) \elab (S^{\prime\prime}, v^\prime)}
+};
+
+
+
+\end{tikzpicture}
+\end{document}

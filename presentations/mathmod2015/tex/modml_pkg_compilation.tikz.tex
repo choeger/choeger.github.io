@@ -1,0 +1,19 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto]
+\node(compile){
+$\begin{aligned}
+\compile{\token{new} \token{this} . z}{\coree} & = & \token{this} \# m_z \\
+\compile{\pkg}{\pkg} & = & \subst{\token{this}}{\langle b \rangle}{c} \\
+\text{where} & & \pkg \downarrow b,c
+\end{aligned}$
+};
+
+\end{tikzpicture}
+
+
+\end{document}

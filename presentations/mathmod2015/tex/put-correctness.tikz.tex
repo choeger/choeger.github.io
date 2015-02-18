@@ -1,0 +1,10 @@
+\documentclass[preview,crop]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+\usetikzlibrary{matrix}
+\begin{document}
+\inference
+          {l \in \text{dom}(S)}
+          {\compile{S}{S}\#m(l \bullet put) v \longrightarrow^{*} (\compile{\subst{l}{v}{S}}{S}, [])}
+\end{document}

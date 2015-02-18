@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,]
+\node(expr){
+\begin{grammar}
+<\coree> ::= \corevar | \lambda <\corevar> . <\coree> | <\coree> <\coree>
+       \alt 'true' | 'false' | '\mathbb{Z}' | '\mathbb{R}' | <\phi>
+       \alt 'if' <\coree> 'then' <\coree> 'else' <\coree>
+       \alt 'let' ['rec'] <\corevar> '=' <\coree> 'in' <\coree>
+       \alt <\corevar> '\leftarrow' <\coree> ';' <\coree> | 'return' <\coree> 
+       \alt <l> \bullet 'get' | <l> \bullet 'put' <\coree>
+       \alt \ldots
+\end{grammar}
+};
+\end{tikzpicture}
+\end{document}

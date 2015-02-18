@@ -1,0 +1,27 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,fill opacity=0.5,thick,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\Highlight}[1][submatrix]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left.north west) (right.south east)] (#1) {};}
+}
+\begin{document}
+$
+  \Sigma = \begin{array}{l|*3{c}|c|r}      
+    & x & y & F & \bar{c} & \\
+    \hline
+    &  2 & 2 &  & 0 & x^2 + y+2 = 1 \\
+    &  0 &  & 2 & 0 & \ddot{x} = Fx \\
+    &   & 0 & 2 & 0 & \ddot{y} = Fy - 9.81\\
+    \hline
+    \bar{d} & 0 & 0 & 2 & 
+    \end{array}
+$
+\end{document}​

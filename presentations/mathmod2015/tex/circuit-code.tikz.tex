@@ -1,0 +1,45 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+\usepackage[europeanresistors,americaninductors]{circuitikz}
+\usetikzlibrary{dsp,positioning,chains,fit,shapes,calc}
+\input{listings-modelica.cfg}
+
+\begin{document}
+
+\begin{circuitikz}[american voltages,american resistors]
+\node at (-5,1) {
+\begin{lstlisting}
+  model SubCircuit
+    parameter Real R1, R2, L, C;
+    Real i, u;
+    protected
+    Real u1,i1, u2,i2, uC,iC, uL,iL;    
+    equation
+    u1 = R1 * i1;    u2 = R2 * i2;
+    u2 = uL;         uL=L*der(iL);
+    iC=C*der(uC);    u=u1+uL;
+    uC=u1+u2;        i=i1+iC;
+    i1=i2+iL;
+  end SubCircuit;
+\end{lstlisting}
+};
+\draw
+  (-1,1)
+      to [short, -*] (0,1)
+  (0,0)
+      to [R, -*, l_=$u_1$] (2,0)
+  (0,0) -- (0, 2)
+      to[C, l=$u_C$] (5,2) -- (5,0) 
+  (2,0) -- (2,-1)
+      to[L, l=$u_L$] (4,-1) -- (4,0)
+  (2,0) -- (2, 1)
+      to[R, l=$u_2$] (4,1) -- (4,0)
+      to[short, *-]  (4,0) -- (5,0) 
+  (5,1)
+      to[short, *-]  (6,1)
+      ;
+\end{circuitikz}
+
+\end{document}

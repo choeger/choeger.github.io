@@ -1,0 +1,52 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,fill opacity=0.5,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\HighlightColumn}[1]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(top#1.north west) (bottom#1.south east)] (column#1) {};}
+}
+
+\newcommand{\HighlightRow}[1]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(left#1.north west) (right#1.south east)] (row#1) {};}
+}
+
+
+\newcommand\sol[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,text opacity =1] {$#1$};} 
+
+
+\begin{document}
+\begin{tikzpicture}
+\node(matrix) {
+$
+  \Sigma = \begin{array}{l|cccccccccc|c|r}      
+    & u & u_1 & u_2 & u_L & u_C & i & i_1 & i_2 & i_L & i_C & \bar{c} & \\
+    \hline
+    &  & \sol{1} &  &  & \tikzmark{top1}{$$} &  & 1 &  &  & \tikzmark{top2}{$$} & 1 & u_1 = i_1R_1 \\
+    &  &  & 1 &  &  &  &  & \sol{1} &  &  & 1 & u_2 = i_2R_1 \\
+    &  &  &  & 1 &  &  &  &  & \sol{0} &  & 0 & u_L = \dot{i_L}L \\
+    &  &  & 1 & \sol{1} &  &  &  &  &  &  & 1 & u_L = u_2 \\
+    &  &  &  &  &  &  & 1 & 1 & 1 &  & 1 & i_1 = i_2 + i_L \\
+    & \tikzmark{left1}{$$} & 1& 1&  & \sol{0} &  &  &  &  &  & \tikzmark{right1}{$1$} & u_C = u_1 + u_2 \\
+    & \tikzmark{left2}{$$} &  &  &  & 0 &  &  &  &  & \sol{1} & \tikzmark{right2}{$0$} & i_C = \dot{u_c}C \\
+    & \sol{1} &  &  &  &  &  &  &  &  &  & 1 & u = \mathit{sin}(t) \\
+    & 1 & 1 & \sol{1} &  &  &  &  &  &  &  & 1 & u = u_1 + u_2 \\
+    & \tikzmark{left3}{$$} &  &  &  &  & \sol{1} & 1 &  &  & 1 & \tikzmark{right3}{$0$} & i = i_1 + i_c \\
+    \hline
+    \bar{d} & 0 & 0 & 0 & 0 & \tikzmark{bottom1}{$0$} & 1 & 0 & 0 & 0 & \tikzmark{bottom2}{$1$} & 
+    \end{array}
+\HighlightColumn{1}
+\HighlightColumn{2}
+\HighlightRow{1}
+\HighlightRow{2}
+\HighlightRow{3}
+$};
+\end{tikzpicture}
+\end{document}​

@@ -1,0 +1,23 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto]
+\node(if){
+\inference[\sc If]{\coree_1 \reduce \truet & \coree_2 \reduce \coreval}{\ift \coree_1 \thent \coree_2 \elset \coree_3 \reduce \coreval}
+};
+
+\node[left=of if](app){
+\inference[\sc App]{\coree_2 \reduce \coreval_1 & \coree_1 \reduce \lambda \corevar . \coree_3 \\ \subst{\corevar}{\coreval_1}\coree_3 \reduce \coreval_2}{\coree_1 \coree_2 \reduce \coreval_2}
+};
+
+\node[below=of app](bind){
+\inference[\sc Bind]{\coree_1 \reduce m}{x \leftarrow \coree_1 \semt \coree_2 \reduce x \leftarrow m \semt \coree_2}
+};
+
+\node[right=of bind](dots){\ldots};
+
+\end{tikzpicture}
+\end{document}

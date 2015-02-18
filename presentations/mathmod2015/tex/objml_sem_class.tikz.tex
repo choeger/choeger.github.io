@@ -1,0 +1,27 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto,]
+\node(inherit){
+$
+\token{inherit} ( \token{struct} w \token{end} ) \token{as} s ; b \longrightarrow w @ (\subst{s\#m}{w(m)}{b}^{m \in dom(w)}) 
+$
+};
+
+\node(method) [below=of inherit.south west,anchor=north west] {
+$
+\begin{aligned}
+\langle w \rangle \# m & \longrightarrow & \sigma(w(m)) \\
+\text{where}\\
+\sigma & = & \subst{\{\langle u = a_u^{u \in V}\rangle\}}{\langle w @ (\token{field} )\rangle}{}^{V \subset U} \\
+       & \cup & \subst{\token{self}}{\langle w \rangle}{} \\
+       & \cup & \subst{u}{w(u)}^{u\in U} \\
+U & = & \mathit{dom}(w) 
+\end{aligned} 
+$
+};
+\end{tikzpicture}
+\end{document}

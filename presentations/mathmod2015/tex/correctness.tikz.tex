@@ -1,0 +1,10 @@
+\documentclass[preview,crop]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+\usetikzlibrary{matrix}
+\begin{document}
+\inference
+          {\coree \reduce m & (S,m) \elab (S^\prime, v)}
+          {\compile{e}{e} \compile{S}{S}\rightarrow^{*} (\compile{S}{S}, \compile{v}{v})}
+\end{document}

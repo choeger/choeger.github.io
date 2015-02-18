@@ -1,0 +1,10 @@
+{
+    "name": "Mathmod 2015",
+    "main": "index.html",
+    "window": {
+        "kiosk": false,
+        "toolbar": false,
+        "width": 1024,
+        "height": 768
+    }
+}

@@ -1,0 +1,13 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{displaygrammar}
+<\coreval> ::= \ldots | \langle b \rangle
+<\pkgval> ::= 'fun' (<x>) <\pkg> | \{ <r_v> \}
+<r_v> ::= \emptyset | <q_v> ; <r_v> 
+<q_v> ::= 'package' <z> \eqN <p> | 'method' <m> \eqN e | 'field' <u> \eqN <v>
+\end{displaygrammar}
+\end{document}

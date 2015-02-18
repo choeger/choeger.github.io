@@ -1,0 +1,21 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,]
+\node(expr){
+\begin{grammar}
+<\tau> ::= <\alpha> | <\tau> \rightarrow <\tau> | (<\tau>, \ldots, <\tau>) <\kappa> | 'rec' <\alpha> '.' <\tau> | \langle <\widetilde\tau> \rangle
+
+<\widetilde\tau> ::= (<m> \colonT <\tau> ; <\widetilde\tau>) | \rho | \emptyset
+
+<\gamma> ::= 'sig' (<\tau>) <\varphi> 'end' | <\tau> \rightarrow <\gamma>
+<\varphi> ::= \emptyset | <\varphi> ';' 'field' <u> \colonT <\tau> |  <\varphi> ';' 'method' <m> \colonT <\tau> | <\varphi> ';' 'super' <s> \colonT <\varphi>
+<\sigma> ::= \forall <\alpha>* '.' <\gamma> 
+\end{grammar}
+};
+
+\end{tikzpicture}
+\end{document}

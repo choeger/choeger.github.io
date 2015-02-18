@@ -1,0 +1,13 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{displaygrammar}
+<\coree> ::= \ldots | 'new' <\pkg> | 'new' 'this' '.' <z> | 'package' <z> '=' <\pkg> 'in' <\coree> 
+<\pkg> ::= '\{' <\pkgdefs> '\}' | 'fun' <x> <\pkg>
+<\pkgdefs> ::= \emptyset | <\pkgdef> ';' <\pkgdefs> 
+<\pkgdef> ::= 'package' <z> \eqN <\pkg> | 'extends' <z> | 'field' <u> \eqN <\coree> | 'method' <m> \eqN <\coree> 
+\end{displaygrammar}
+\end{document}

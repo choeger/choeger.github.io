@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage{uebbgrammar}
+
+\newcommand{\coree}{e^{c}}
+\newcommand{\coreval}{v^{c}}
+\newcommand{\corepat}{p^{c}}
+\newcommand{\corevar}{x}
+\newcommand{\coreadt}{a}
+\newcommand{\corefields}{f^{c}}
+\newcommand{\corevalfields}{fv^{c}}
+\newcommand{\coremonad}{m^{c}}
+
+\begin{document}
+
+\begin{displaygrammar}
+<c> ::= 'true' | 'false' | '\mathbb{Z}' | '\mathbb{R}' | \ldots
+
+<\coree> ::= \corevar | \lambda <\corevar> . <\coree> | <\coree> <\coree>
+       \alt 'if' <\coree> 'then' <\coree> 'else' <\coree>
+       \alt 'const' <c>
+       \alt 'let' ['rec'] <\corevar> '=' <\coree> 'in' <\coree>
+       \alt 'match' <\coree> 'with' <\corepat>+ | 'pack' <\coreadt> <\coree>*
+       \alt \llbracket <\coree>* \rrbracket | 'new' <\coree> | <\coree> \bropT <\coree> \brclT
+       \alt <\corevar> '\leftarrow' <\coree> ';' <\coree> | 'return' <\coree> 
+       \alt <l> \bullet 'get' | <l> \bullet 'put' <\coree>
+
+<\corepat> ::= <\coreadt> <\corevar>* <\coree>
+
+<\coremonad> ::= <l> \bullet 'get' | <l> \bullet 'put' <\coreval> 
+                 \alt 'return' <\coreval> | <\corevar> '\leftarrow' <\coremonad> ';' <\coree> 
+
+<\coreval> ::= \lambda <\corevar> . <\coree> 
+               \alt <\coremonad>
+               \alt <c>
+               \alt <\coreadt> <\coreval>*
+               \alt \bropT <\coreval>* \brclT
+               
+\end{displaygrammar}
+
+\end{document}

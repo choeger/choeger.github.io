@@ -1,0 +1,58 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\tikzset{%
+  highlight/.style={rectangle,rounded corners,fill=red!15,draw,fill opacity=0.5,inner sep=0pt}
+}
+\newcommand{\tikzmark}[2]{\tikz[overlay,remember picture,baseline=(#1.base)] \node (#1) {#2};}
+%
+\newcommand{\HighlightColumn}[2]{%
+    \tikz[overlay,remember picture]{
+    \node[highlight,fit=(top#1.north west) (bottom#1.south east)] (#1) {};}
+}
+
+\newcommand\sol[1]{\tikz[overlay, remember picture,baseline=-\the\dimexpr\fontdimen22\textfont2\relax]\node[rectangle,fill=blue!50,rounded corners,fill opacity = 0.2,text opacity =1] {$#1$};} 
+
+
+\begin{document}
+\begin{tikzpicture}
+\node at (-5,1) {
+\begin{lstlisting}
+  model SubCircuit
+    parameter Real R1, R2, L, C;
+    Real i, u;
+    protected
+    Real u1,i1, u2,i2, uC,iC, uL,iL;    
+    equation
+    u1 = R1 * i1;    u2 = R2 * i2;
+    u2 = uL;         uL=L*der(iL);
+    iC=C*der(uC);    u=u1+uL;
+    uC=u1+u2;        i=i1+iC;
+    i1=i2+iL;
+  end SubCircuit;
+\end{lstlisting}
+};
+\node(matrix) {
+$
+  \Sigma = \begin{array}{l|cccccccccc|c|r}      
+    & u & u_1 & u_2 & u_L & u_C & i & i_1 & i_2 & i_L & i_C & \bar{c} & \\
+    \hline
+    &  & \sol{1} &  &  & \tikzmark{top1}{$$} &  & 1 &  &  &  & 1 & u_1 = i_1R_1 \\
+    &  &  & 1 &  &  &  &  & \sol{1} &  &  & 1 & u_2 = i_2R_1 \\
+    &  &  &  & 1 &  &  &  &  & \sol{0} &  & 0 & u_L = \dot{i_L}L \\
+    &  &  & 1 & \sol{1} &  &  &  &  &  &  & 1 & u_L = u_2 \\
+    &  &  &  &  &  &  & 1 & 1 & 1 &  & 1 & i_1 = i_2 + i_L \\
+    &  & 1& 1&  & \sol{0} &  &  &  &  &  & 1 & u_C = u_1 + u_2 \\
+    &  &  &  &  & 0 &  &  &  &  & \sol{1} & 0 & i_C = \dot{u_c}C \\
+    & \sol{1} &  &  &  &  &  &  &  &  &  & 1 & u = \mathit{sin}(t) \\
+    & 1 & 1 & \sol{1} &  &  &  &  &  &  &  & 1 & u = u_1 + u_2 \\
+    &  &  &  &  &  & \sol{1} & 1 &  &  & 1 & 0 & i = i_1 + i_c \\
+    \hline
+    \bar{d} & 0 & 0 & 0 & 0 & \tikzmark{bottom1}{$0$} & 1 & 0 & 0 & 0 & 1 & 
+    \end{array}
+$
+};
+\end{tikzpicture}
+\end{document}​

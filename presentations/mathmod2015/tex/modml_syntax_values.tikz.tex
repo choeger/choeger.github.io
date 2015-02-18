@@ -1,0 +1,25 @@
+ \documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto,]
+\node(value){
+\begin{grammar}
+<\coreval> ::= \lambda <\corevar> . <\coree> 
+               \alt <\coremonad>
+               \alt 'true' | 'false' | '\mathbb{Z}' | '\mathbb{R}' | <\phi>
+               \alt <\coreadt> <\coreval>*
+               \alt \bropT <\coreval>* \brclT               
+\end{grammar}
+};
+\node(monad)[below=of value.south west,anchor=west]{
+\begin{grammar}
+<\coremonad> ::= <l> \bullet 'get' | <l> \bullet 'put' <\coreval> 
+                 \alt 'return' <\coreval> | <\corevar> '\leftarrow' <\coremonad> ';' <\coree> 
+
+\end{grammar}
+};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,30 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto]
+\node(pexpr){
+\inference[\sc F-Package]{\pkgdefs \downarrow b_1 \vert b_2}{
+\{ \pkgdefs \} \downarrow b \vert \token{struct} b_2 \token{end}}
+};
+
+\node(pfun)[below = of pexpr]{
+\inference[\sc F-PackageFun]{\pkg \downarrow b \vert c}{
+\token{fun} (x) \pkg \downarrow b \vert \token{fun} (x) c}
+};
+
+\node(package)[below = of pfun] {
+\inference[\sc F-Package]{\pkg \downarrow b \vert c & \pkgdefs \downarrow b_1 \vert b_2}{
+\token{package} z = \pkg ; \pkgdefs \downarrow \token{method} m_z = \compile{\pkg}{\pkg}; b_1 \vert b_2 }
+};
+
+\node(extend) [below=of package]{
+\inference[\sc F-Extends]{\pkg \downarrow b \vert c & \pkgdefs \downarrow b_1 \vert b_2}{
+\token{extend} \pkg ; \pkgdefs \downarrow b @ b_1 \vert \token{inherit} \compile{\pkg}{\pkg}; b_2}
+};
+\end{tikzpicture}
+
+
+\end{document}

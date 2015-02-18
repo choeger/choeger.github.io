@@ -1,0 +1,25 @@
+\documentclass[tikz,convert=pdf2svg]{standalone}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+\begin{document}
+\begin{tikzpicture}	
+  \node (u) {$u$};
+  \node[right=of u]  u1 {$u_1$};
+  \node[right=of u1] u2 {$u_2$};
+  \node (3,0) {$u_L$};
+  \node (4,0) {$u_C$};
+  \node (5,0) {$i$};
+  \node (6,0) {$i_1$};
+  \node (7,0) {$i_2$};
+  \node (8,0) {$i_L$};
+  \node (9,0) {$i_C$};
+  \node (10,0) {$c$};
+
+  \pnode (11, 0) {$u_1 = i_1 R_1$}; 
+  \node (11, 1) {$u_2 = i_2 R_2$};
+  \node (11, 2) {$u_L = L \dot{i_L}$}; 
+  \node (11, 3) {$u_L = u_2$};
+  \node (11, 3) {$i_1 = i_2 + i_L$};
+  \node (11, 3) {$u_C = u_1 + u_2$};
+  \node (11, 3) {$i_C = C \dot{u_C}$};
+\end{tikzpicture}
+\end{document}

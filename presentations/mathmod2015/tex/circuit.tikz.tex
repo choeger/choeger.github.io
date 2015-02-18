@@ -1,0 +1,23 @@
+\documentclass[tikz,convert=pdf2svg]{standalone}
+\usetikzlibrary{dsp,positioning,chains,fit,shapes,calc}
+\usepackage[europeanresistors,americaninductors]{circuitikz}
+\begin{document}
+\begin{circuitikz}[american voltages,american resistors]
+\draw
+  (-1,1)
+      to [short, -*] (0,1)
+  (0,0)
+      to [R, -*, l_=$u_1$] (2,0)
+  (0,0) -- (0, 2)
+  to [opening switch, o-o] (2,2)
+      to[C, l=$u_C$] (5,2) -- (5,0) 
+  (2,0) -- (2,-1)
+      to[L, l=$u_L$] (4,-1) -- (4,0)
+  (2,0) -- (2, 1)
+      to[R, l=$u_2$] (4,1) -- (4,0)
+      to[short, *-]  (4,0) -- (5,0) 
+  (5,1)
+      to[short, *-]  (6,1)
+      ;
+\end{circuitikz}
+\end{document}

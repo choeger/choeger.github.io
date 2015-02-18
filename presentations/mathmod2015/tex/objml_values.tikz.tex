@@ -1,0 +1,17 @@
+\documentclass[preview]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,]
+\node(expr){
+\begin{grammar}
+<v> ::= \ldots | 'fun' (<x>) <a> | \langle <w> \rangle
+<v_c> ::= 'fun' (<x>) <c> | 'struct' <w> 'end'
+<w> ::= \emptyset | <w_d> ; <w> \comment{fields before methods, unique labels}
+<w_d> ::= 'method' <m> \eqN <a> | 'field' <u> \eqN <v>
+\end{grammar}
+};
+\end{tikzpicture}
+\end{document}

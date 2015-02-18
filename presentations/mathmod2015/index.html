@@ -1,0 +1,453 @@
+<html lang="en-US" class="">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- <meta name="author" content="marcolago"> -->
+
+    <meta property="og:title" content="Mathmod 2015">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="img/rover.jpg">
+    <meta property="og:site_name" content="Mathmod 2015">
+
+
+
+    <title>Mathmod 2015</title>
+
+
+
+    <link rel="stylesheet" href="css/flowtime/reset.css">
+    <link rel="stylesheet" href="css/flowtime/flowtime.css">
+    <link rel="stylesheet" href="css/flowtime/default.css">
+    <link rel="stylesheet" href="css/flowtime/prism.css">
+    <link rel="stylesheet" href="css/flowtime/cadeau.css">
+
+    <link rel="stylesheet" href="css/recon.css">
+    <link rel="stylesheet" href="css/OpenSans.css">
+    <link rel="stylesheet" href="css/roboto.css">
+    <link rel="stylesheet" href="css/roboto-slab.css">
+    
+    <link rel="apple-touch-icon-precomposed" href="img/flowtime/touch-icon-iphone.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/flowtime/touch-icon-ipad.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/flowtime/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/flowtime/touch-icon-ipad-retina.png">
+    
+    <link rel="apple-touch-startup-image" href="img/flowtime/startup-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+    <link rel="apple-touch-startup-image" href="img/flowtime/startup-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
+    
+  </head>
+  <body class="">
+    <div class="flowtime">
+      <div class="ft-section" data-id="TitlesPage">
+	
+	<div class="ft-page" style="page-break-before:always;" data-id="title_page">
+	  
+<div class="stack-center"><div class="stacked-center">
+  <div id="background"><img src="img/tuberlin_sketch.png" alt="" class="stretch"></div>
+  <p class="page-title">
+    <h1>Faster Structural Analysis of Differential-Algebraic Equations by Graph Compression</h1>
+    <div class="pull-left">
+      <p class="left-justify">Christoph Höger<br><a href="https://github.com/choeger" target="_blank">@choeger</a><br><a href="http://www.uebb.tu-berlin.de">TU Berlin</a></p>
+    </div>
+  </p>
+</div></div>
+	</div>
+      </div>
+      <div class="ft-section" data-id="Dynamic">
+	
+	<div class="ft-page" style="page-break-before:always;" data-id="sigma_primer">
+	  
+<h2>An Index-Reduction Primer</h2>
+<div class="two-column">
+  <div class="row">
+    <div class="cell columnfill">
+      <ul>
+        <li>
+          <p>Consider the cartesian pendulum:          </p>
+          <div style="width:80%" class="demo-container"><img width="100%" src="img/pendulum-equations.tikz.svg"></div>
+        </li>
+      </ul>
+    </div>
+    <div class="cell ft-fragment">
+      <ul>
+        <li>
+          <p>It can be solved after additional (differentiated) equations:</p>
+          <div style="width:80%" class="demo-container"><img width="100%" src="img/pendulum-equations-reduced.tikz.svg"></div>
+        </li>
+        <li>
+          <p>Structural analysis decides which equations to differentiate how often</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="sigma_method">
+	  
+<h2>The Σ-Method in a Nutshell</h2>
+<div class="two-column">
+  <div class="row">
+    <div class="cell columnfill">
+      <ul>
+        <li>
+          <p>Create structure matrix \(\Sigma = \sigma_{ij}\), mapping variables to their <b>highest</b> derivative in each equation</p>
+        </li>
+        <li>
+          <p>\(d_j\) is the differentiation degree of <b>variable</b> \(j\)</p>
+        </li>
+        <li>
+          <p>\(c_i\) is the differentiation degree of <b>equation</b> \(i\)</p>
+        </li>
+        <li>
+          <p>Consistency condition: \(d_j \geq \sigma_{ij} + c_i\)</p>
+        </li>
+        <li>
+          <p>Usually normalized by maximum entry \(m\): \((m - d_j) + c_i \leq (m - \sigma_{ij})\)</p>
+        </li>
+      </ul>
+    </div>
+    <div class="cell ft-fragment columnfill">
+      <ul>
+        <li>
+          <p>E.g. the Cartesian Pendulum:</p>
+          <div style="width:100%" class="demo-container"><img width="100%" src="img/sigma-matrix-pendulum.tikz.svg"></div>
+        </li>
+        <li class="ft-fragment">
+          <p>Now search a <b>minimum-cost-assignment</b>!</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="sigma_scale">
+	  
+<h2>Use Case: Large homogenous models</h2>
+<div class="two-column ft-fragment">
+  <div class="row">
+    <div class="cell">
+      <p>Consider a simple, pluggable circuit:</p>
+    </div>
+    <div class="cell">
+      <p>Scaling is a natural process:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="cell columnfill demo-container"><img style="width:90%" src="img/circuit.tikz.svg" class="centered"></div>
+    <div class="cell columnfill demo-container"><img style="width:90%" src="img/circuit-scale.tikz.svg" class="centered"></div>
+  </div>
+</div>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="sigma_performance">
+	  
+<h2>Runtime Scalability</h2>
+<ul style="height=100%">
+  <li>
+    <p>The \(\Sigma\)-method has a superlinear runtime behaviour</p>
+  </li>
+  <script src="js/d3.js"></script>
+  <script language="javascript" type="text/javascript" src="js/flot/jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="js/flot/jquery.flot.js"></script>
+  <script type="text/javascript" src="js/jquery.flot.axislabels.js"></script>
+  <script type="text/javascript">
+    $(function() {
+    		var t = [[50,  0.000841],
+                       [100,  0.000766],
+                       [500,  0.004919],
+                       [1000,  0.019012],
+                       [2000,  0.052695],
+                       [5000,  0.299361],
+                       [7500,  0.668719],
+                       [10000,  1.202151],
+                       [12500,  1.918512],
+                       [15000,  2.830055],
+                       [17500,  3.889668],
+                       [20000,  5.171701],
+                       [25000,  8.304821],
+                       [50000,  39.235843]]
+    		var plot = $.plot("#placeholder", [
+    			{ data: t, label: "index-reduction time", color:"#c50e1f"}
+    		], {
+    		   axisLabels: {
+    		                 show: true
+    			       },
+    			       xaxes: [{
+    			         axisLabel: 'number of subcircuits',
+    			       }],
+    			       yaxes: [{
+    			           position: 'left',
+    				   axisLabel: 'time (s)',
+    			         }, {
+    			           position: 'right',
+    				   axisLabel: 'bleem'
+    			        }],
+    			series: {
+    				lines: {
+    					show: true
+    				},
+    				points: {
+    					show: true
+    				}
+    			},
+                      legend: {
+                             backgroundColor: "#fff",
+                      },
+    			grid: {
+    				hoverable: true,
+    				clickable: true
+    			},
+    			yaxis: {
+    				min: 0,
+    				max: 40
+    			}
+    		});
+    		$("<div id='tooltip'></div>").css({
+    			position: "absolute",
+    			display: "none",
+    			border: "1px solid #fdd",
+    			padding: "2px",
+                      "color": "#545454",
+                      "background-color": "#fee",
+                      opacity: 0.80
+    		}).appendTo("body");
+    		$("#placeholder").bind("plothover", function (event, pos, item) {
+    			if ($("#enablePosition:checked").length > 0) {
+    				var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+    				$("#hoverdata").text(str);
+    			}
+    			if ($("#enableTooltip:checked").length > 0) {
+    				if (item) {
+    					var x = item.datapoint[0].toFixed(2),
+    						y = item.datapoint[1].toFixed(2);
+    					$("#tooltip").html(item.series.label + " of " + x + " = " + y)
+    						.css({top: item.pageY+5, left: item.pageX+5})
+    						.fadeIn(200);
+    				} else {
+    					$("#tooltip").hide();
+    				}
+    			}
+    		});
+               $("#placeholder").bind("plotclick", function (event, pos, item) {
+    			if (item) {
+    				$("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+    				plot.highlight(item.series, item.datapoint);
+    			}
+    		});
+    		// Add the Flot version string to the footer
+    		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+    	});
+  </script>
+  <div id="content">
+    <div style="width:80%;" class="demo-container">
+      <div id="placeholder" style="width:100%; height:50%;"></div>
+    </div>
+  </div>
+</ul>
+	</div>
+      </div>
+      <div class="ft-section" data-id="Compression">
+	
+	<div class="ft-page" style="page-break-before:always;" data-id="compression_intro">
+	  
+<h2>An Underestimated Aspect of Hierarchical Modeling</h2>
+<p>Most variables in a model can be <b>protected</b></p>
+<div style="width:80%" class="demo-container"><img width="100%" src="img/circuit-code.tikz.svg"></div>
+<p class="ft-fragment">9 equations, 8 protected unknowns</p>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="compression_components">
+	  
+<h2>Components</h2>
+<ul>
+  <li>Components consist of protected unknowns \(P\), public unknowns \(Q\) and equations \(\mathcal{R}\)</li>
+  <div style="width:100%" class="demo-container"><img width="100%" src="img/sigma-matrix-circuit-component.tikz.svg" class="centered"></div>
+</ul>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="compression_compressible">
+	  
+<h2>Compressible Components</h2>
+<ul>
+  <li>Call a subcomponent <b>compressible</b> when \(|P| + 1 = |\mathcal{R}|\)</li>
+  <li>Given a (global) assignment, <br>
+    <p>
+      <ul>
+        <li class="ft-fragment">Each equation \(r \in \mathcal{R}\) must be assigned to one unknown in \(Q \cup \mathcal{R}\)</li>
+        <li class="ft-fragment"><em>All</em> protected components must be assigned to an equation in \(\mathcal{R}\)</li>
+        <li class="ft-fragment">In other words, <b>one</b> of the unknowns in \(P\) is matched by an equation in \(R\)</li>
+        <li class="ft-fragment">Once that \(p \in P\) is fixed, the <b>local</b> maximal assignment is also determined</li>
+        <li class="ft-fragment">In other words, selecting that \(p\) <b>implies</b> the cost of the whole sub-assignment</li>
+      </ul>
+    </p>
+  </li>
+  <li class="ft-fragment">Whether a component is compressible can be determined before instantiation</li>
+</ul>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="compression_method">
+	  
+<h2>Compression</h2>
+<ul>
+  <li class="For">each unknown \(q \in Q\) find the local maximal assignment between \(P \cup \{q\}\) and \(\mathcal{R}\)  </li>
+  <li class="ft-fragment">Replace the component with a surrogate equation containing the corresponding values for each \(q \in Q\)</li>
+  <li class="ft-fragment">A minimum cost assignment in the smaller matrix implies a minimum cost assignment in the source matrix </li>
+  <li class="ft-fragment">Solve the smaller problem
+    <div style="width:70%" class="ft-ftagment demo-container"><img width="100%" src="img/sigma-matrix-circuit-compressed.tikz.svg" class="centered"></div>
+  </li>
+</ul>
+	</div>
+	<div class="ft-page" style="page-break-before:always;" data-id="compression_performance">
+	  
+<h2>Performance of the Compressed Σ-Method</h2>
+<ul style="height=100%">
+  <li>
+    <p>Compression can reduce the runtime by one order of magnitude</p>
+  </li>
+  <div class="demo-container">
+    <div id="placeholder4" style="width:100%;height:50%;"></div>
+    <script type="text/javascript">
+      $(function() {
+      		var container = $("#placeholder4");      
+      		var t = [[50,  0.000841],
+                         [100,  0.000766],
+                         [500,  0.004919],
+                         [1000,  0.019012],
+                         [2000,  0.052695],
+                         [5000,  0.299361],
+                         [7500,  0.668719],
+                         [10000,  1.202151],
+                         [12500,  1.918512],
+                         [15000,  2.830055],
+                         [17500,  3.889668],
+                         [20000,  5.171701],
+                         [25000,  8.304821],
+                         [50000,  39.235843]]
+        var it = [[0,0],
+                  [500,  0.01],
+                  [2500,  0.09],
+                  [5000,  0.210],
+                  [12500,  0.660],
+                  [62500,  10.720]]
+      		var plot = $.plot(container, [
+      			{ data: t, label: "index-reduction time", color:"#c50e1f"},
+      			{ data: it, label: "compressed index-reduction time", color:"#188B00"},
+      		], {
+      		   axisLabels: {
+      		                 show: true
+      			       },
+      			       xaxes: [{
+      			         axisLabel: 'number of subcircuits',
+      			       }],
+      			       yaxes: [{
+      			           position: 'left',
+      				   axisLabel: 'time (s)',
+      			         }, {
+      			           position: 'right',
+      				   axisLabel: 'bleem'
+      			        }],
+      			series: {
+      				lines: {
+      					show: true
+      				},
+      				points: {
+      					show: true
+      				}
+      			},
+          legend: {
+            backgroundColor: "#fff",
+          },
+      	 		grid: {
+      				hoverable: true,
+      				clickable: true
+      			},
+      			yaxis: {
+      				min: 0,
+      				max: 40
+      			}
+      		});
+      		$("<div id='tooltip2'></div>").css({
+      			position: "absolute",
+      			display: "none",
+      			border: "1px solid #fdd",
+      			padding: "2px",
+          		"color": "#545454",
+      			"background-color": "#fee",
+      			opacity: 0.80
+      		}).appendTo("body");
+      		var tooltip = $("#tooltip2");
+      		container.bind("plothover", function (event, pos, item) {
+      				if (item) {
+      					var x = item.datapoint[0].toFixed(2),
+      						y = item.datapoint[1].toFixed(2);
+      					tooltip.html(item.series.label + " of " + x + " = " + y)
+      						.css({top: item.pageY+5, left: item.pageX+5})
+      						.fadeIn(200);
+      				} else {
+      					tooltip.hide();
+      				}
+      		});
+      		container.bind("plotclick", function (event, pos, item) {
+      			if (item) {
+      				$("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+      				plot.highlight(item.series, item.datapoint);
+      			}
+      		});
+      	});
+    </script>
+  </div>
+</ul>
+	</div>
+      </div>
+      <div class="ft-section" data-id="Conclusion">
+	
+	<div class="ft-page" style="page-break-before:always;" data-id="conclusion_future">
+	  
+<h2>Conclusion</h2>
+<p>What has been achieved?</p>
+<ul>
+  <li>Performance of structural analysis can be improved</li>
+  <li class="ft-fragment">Correctness of the optimization can be proven</li>
+</ul>
+<p class="ft-fragment">What remains to be done?</p>
+<ul>
+  <li class="ft-fragment">Investigate more compressible patterns </li>
+  <li class="ft-fragment">Handle variable structure inside compressible components</li>
+  <li class="ft-fragment">Do a real-life benchmark of the compression method</li>
+</ul>
+	</div>
+      </div>
+      <div class="loglog"></div>
+
+      <script src="js/flowtime/brav1toolbox.js"></script>
+      <script src="js/flowtime/flowtime.js"></script>
+      <script src="js/flowtime/prism.js"></script>
+
+
+
+
+      <script type="text/javascript">
+	// Configuration API test
+	Flowtime.showProgress(true);
+	// Flowtime.fragmentsOnSide(true);
+	// Flowtime.fragmentsOnBack(true);
+	// Flowtime.useHistory(false);
+	// Flowtime.slideInPx(true);
+	// Flowtime.sectionsSlideToTop(true);
+	// Flowtime.gridNavigation(false);
+	// Flowtime.useOverviewVariant(true);
+	Flowtime.setTouchNavigation(false);
+	Flowtime.parallaxInPx(true);
+	Flowtime.mouseDragEnabled(false);
+	Flowtime.enableNavigation(true, true, true, true);
+	Flowtime.clicker(true);
+	// event management
+	Flowtime.addEventListener("flowtimenavigation", onNavigation, false);
+	function onNavigation(e)
+	{
+	cacheTitle = document.title.replace("Mathmod 2015 | ", "");
+	}
+	// starts the application with configuration options
+	Flowtime.start();
+      </script>
+    </div>
+    <a href="https://github.com/amsun-berlin/daestruct"><img style="position: fixed; top: 0; right: 0; border: 0; z-index: 1000;" src="img/forkme_red.png" alt="Fork me on GitHub"></a><script src="js/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  </body>
+</html>

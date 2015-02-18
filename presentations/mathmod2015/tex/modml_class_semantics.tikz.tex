@@ -1,0 +1,38 @@
+\documentclass[tikz]{standalone}
+\usepackage[utf8]{inputenc}
+
+\usepackage{modml}
+
+\begin{document}
+\begin{tikzpicture}[node distance=0.5cm, auto]
+\node(inst){
+\inference[\sc Inst]{\pkg \reduce \{ \pkgvaldefs \}}{\token{new} \pkg \reduce \langle \mathit{field}(\pkgvaldefs) @ \mathit{method}(\pkgvaldefs)\rangle}
+};
+
+\node(reduce)[right=of inst]{
+\inference[\sc Reduce]{\subst{\token{this}.z}{\pkgdefs(z)}{\pkgdefs} \reduce \pkgvaldefs}{\{\pkgdefs\} \reduce \{ \pkgvaldefs \}}
+};
+
+\node(extend)[below=of inst]{
+\inference[\sc Extend]{\pkg_1 \reduce \{ \pkgvaldefs \} & \pkgdefs \reduce \pkgvaldefs^\prime}{\token{extend} \pkg ; \pkgdefs \reduce \pkgvaldefs @ \pkgvaldefs^\prime}
+};
+\node(package) [right=of extend]{
+\inference[\sc Package]{\pkg \reduce \pkgval & \pkgdefs \reduce \pkgvaldefs}{
+\token{package} z = \pkg ; \pkgdefs \reduce \token{package} z = \pkgval ; \pkgvaldefs}
+};
+\node(field) [below=of extend] {
+\inference[\sc Field]{\coree \reduce \coreval & \pkgdefs \reduce \pkgvaldefs}{
+\token{field} u = \coree ; \pkgdefs \reduce \token{field} u = \coreval ; \pkgvaldefs}
+};
+\node(method) [right=of field] {
+\inference[\sc Method]{\pkgdefs \reduce \pkgvaldefs}{
+\token{method} m = \coree ; \pkgdefs \reduce \token{method} m = \coree ; \pkgvaldefs}
+};
+\node(pkgapp) [below=of field] {
+\inference[\sc PkgApp]{\coree \reduce \coreval & \pkg \reduce \token{fun} (x) \pkg 
+  & \subst{x}{\coreval}{\pkg} \reduce \pkgval}
+{\coree \pkg \reduce \pkgval}
+};
+\end{tikzpicture}
+
+\end{document}
